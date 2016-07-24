@@ -1,0 +1,68 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{$basePath}/css/reset.css"> <!-- CSS reset -->
+    <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/alert/alertify.core.css">
+    <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/alert/alertify.default.css" id="toggleCSS">
+    <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/font-awesome.min.css">
+    <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/fontawesome-iconpicker.min.css">
+    <title>{ifset title}{include title|striptags} | {/ifset}Exif obrázků do DB</title>
+
+    {block scripts}
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+        <script src="{$basePath}/js/nette.ajax.js"></script>
+        <script src="{$basePath}/js/main.js"></script>
+        <script src="{$basePath}/js/modernizr.js"></script>
+        <script type="text/javascript" src="{$basePath}/alert/alertify.js"></script>
+        <script src="{$basePath}/js/fontawesome-iconpicker.min.js"></script>
+    {/block}
+    <link rel="stylesheet" href="{$basePath}/css/style.css">
+
+    {block head}{/block}
+</head>
+
+<body>
+<div n:foreach="$flashes as $flash" class="{$flash->type}">
+    <script>
+        $(function () {
+            var type = {$flash->type};
+            var prom = {$flash->message};
+            if (type == "info") {
+                alertify.success(prom);
+            } else if (type == "error") {
+                alertify.error(prom);
+            } else {
+                alertify.log(prom);
+            }
+        });
+    </script>
+</div>
+<div class="topMenu">
+    <ul>
+        {if $user->isLoggedIn()}
+            <li>Vítejte {$user->getIdentity()->name} ||
+                <a href="{plink logout!}">Odhlásit se</a>
+            </li>
+        {else}
+            <li><a href="{plink Sign:in}">Přihlásit se</a></li>
+            <li><a href="{plink Sign:register}">Registrovat se</a></li>
+        {/if}
+        <li><a href="{plink Image:upload}">Nahrát obrázek</a> </li>
+    </ul>
+</div>
+<header>
+    <h1><a href="{plink Homepage:default}">Nahrávání obrázků se zpracováním exif</a></h1>
+</header>
+{include content}
+
+</body>
+</html>

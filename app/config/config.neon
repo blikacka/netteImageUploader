@@ -1,0 +1,50 @@
+#
+# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# https://nette.org/security-warning
+#
+parameters:
+	database:
+		user: data
+		password: baze
+		dbname: exifdata
+
+doctrine:
+	user: %database.user%
+	password: %database.password%
+	dbname: %database.dbname%
+	metadata:
+		App\Entities: %appDir%/Entities
+
+php:
+	date.timezone: Europe/Prague
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	- App\Forms\FormFactory
+	- App\Forms\SignFormFactory
+	- Nette\Security\Passwords
+	- App\Services\Security\Authenticator(@doctrine.dao(App\Entities\User))
+	- App\Forms\RegisterForm
+
+	- App\Services\FileExifData
+
+	router: App\RouterFactory::createRouter
+
+extensions:
+	console: Kdyby\Console\DI\ConsoleExtension
+	events: Kdyby\Events\DI\EventsExtension
+	annotations: Kdyby\Annotations\DI\AnnotationsExtension
+	doctrine: Kdyby\Doctrine\DI\OrmExtension
+
+
+
