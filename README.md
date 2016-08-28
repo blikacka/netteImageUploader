@@ -1,7 +1,9 @@
 Ajaxový upload obrázků za pomocí Nette
 =============
 
-Obrázky se ukládají do databáze pomocí Doctrine 2. Pokud obrázek obsahuje v exif datech GPS souřadnice, ty budou vytaženy a uloženy do DB k obrázku.
+Obrázky se ukládají do databáze pomocí Doctrine2. Pokud obrázek obsahuje v exif datech GPS souřadnice, ty budou vytaženy a uloženy do DB k obrázku.
+
+Pokud obrázek obsahuje GPS souřadnice, bude obrázek vykreslený taky v Google mapě.
 
 Instalace
 ----------
