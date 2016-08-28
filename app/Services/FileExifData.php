@@ -16,9 +16,7 @@ class FileExifData {
 	 * @return array
 	 */
 	public function getExifData($file) {
-
-		$exifData = exif_read_data($file, 0, true);
-
+		$exifData = @exif_read_data($file, 0, true);
 		return $exifData;
 	}
 
@@ -28,7 +26,6 @@ class FileExifData {
 	 * @return array
 	 */
 	public function getExifGps($exifData) {
-
 		if (isset($exifData['GPS']) && isset($exifData['GPS']['GPSLatitude']) && count($exifData['GPS']['GPSLatitude']) > 2 && isset($exifData['GPS']['GPSLongitude']) && count($exifData['GPS']['GPSLongitude']) > 2) {
 			$coords['lat'] = $this->getGps([$exifData['GPS']['GPSLatitude'][0], $exifData['GPS']['GPSLatitude'][1], $exifData['GPS']['GPSLatitude'][2]]);
 			$coords['lng'] = $this->getGps([$exifData['GPS']['GPSLongitude'][0], $exifData['GPS']['GPSLongitude'][1], $exifData['GPS']['GPSLongitude'][2]]);

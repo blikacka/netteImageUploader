@@ -545,6 +545,7 @@ header h1 {
     margin: 0px;
     padding: 0px;
     right: 0px;
+    z-index: 100000;
 }
 
 .topMenu ul {
@@ -571,7 +572,7 @@ header h1 {
     background: #BAC4CB;
 }
 
-form{
+form {
     margin: auto;
     width: 450px;
     font-size: 16px;
@@ -579,6 +580,7 @@ form{
     padding: 30px 30px 15px 30px;
     border: 5px solid #303E49;
 }
+
 form input[type=submit],
 form input[type=button],
 form input[type=text],
@@ -586,29 +588,29 @@ form input[type=email],
 form input[type=password],
 form select,
 form textarea,
-form label
-{
+form label {
     font-family: Georgia, "Times New Roman", Times, serif;
     font-size: 16px;
     color: #fff;
     margin-right: 15px;
 
 }
+
 form label {
-    display:block;
+    display: block;
     margin-bottom: 10px;
 }
-form label > span{
+
+form label > span {
     display: inline-block;
     float: left;
     width: 150px;
 }
+
 form input[type=text],
 form input[type=password],
 form input[type=email],
-form select
-
-{
+form select {
     background: transparent;
     border: none;
     border-bottom: 1px dashed #83A4C5;
@@ -617,7 +619,8 @@ form select
     padding: 0px 0px 0px 0px;
     font-style: italic;
 }
-form textarea{
+
+form textarea {
     font-style: italic;
     padding: 0px 0px 0px 0px;
     background: transparent;
@@ -626,8 +629,8 @@ form textarea{
     border-bottom: 1px dashed #83A4C5;
     width: 275px;
     overflow: hidden;
-    resize:none;
-    height:60px;
+    resize: none;
+    height: 60px;
 }
 
 form textarea:focus,
@@ -635,22 +638,21 @@ form input[type=text]:focus,
 form input[type=password]:focus,
 form input[type=email]:focus,
 form input[type=email]:focus,
-form select:focus
-
-{
+form select:focus {
     border-bottom: 1px dashed #D9FFA9;
 }
 
 form input[type=submit],
-form input[type=button]{
+form input[type=button] {
     background: #576E86;
     border: none;
     padding: 8px 10px 8px 10px;
     border-radius: 5px;
     color: #A8BACE;
 }
+
 form input[type=submit]:hover,
-form input[type=button]:hover{
+form input[type=button]:hover {
     background: #394D61;
 }
 
@@ -670,3 +672,92 @@ form li {
     background: #303E49;
     color: white;
 }
+
+/* slides styling */
+
+.photo {
+    width: 80%;
+    text-align: left;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+.photo ul.topic {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    height: auto;
+    position: relative;
+    z-index: 10;
+}
+
+.photo ul.topic li {
+    display: block;
+    float: left;
+}
+
+.photo ul.topic li a.set {
+    display: block;
+    font-size: 11px;
+    text-align: center;
+    line-height: 30px;
+    color: #000;
+    text-decoration: none;
+    border: 1px solid #fff;
+    border-width: 1px 1px 0 0;
+    background: #ccc;
+    font-family: verdana, arial, sans-serif;
+}
+
+.photo ul.topic li a ul,
+.photo ul.topic li ul {
+    display: none;
+}
+
+.photo ul.topic li.active a {
+    color: #000;
+    background: #bbb;
+}
+
+
+.photo ul.topic li.active ul {
+    display: block;
+    left: 0;
+    top: 31px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #ddd;
+    border: 1px solid #bbb;
+    z-index: 1;
+}
+
+
+.photo ul.topic li ul li {
+    display: inline;
+    float: left;
+    border: 1px solid #fff;
+    margin: 1px;
+}
+
+.photo ul.topic li ul li a {
+    display: block;
+    cursor: default;
+    float: left;
+    text-decoration: none;
+    background: #444;
+    border: 1px solid #888;
+}
+
+.photo ul.topic li ul li a img {
+    display: block;
+    width: 145px;
+    height: 100px;
+    border: 5px solid #eee;
+}
+.photo ul.topic li ul li a img:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+

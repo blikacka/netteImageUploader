@@ -14,8 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @property-read int $id
  * @property User $user
- * @property string $imagePath
- * @property string $imageName
+ * @property string $path
+ * @property string $name
+ * @property string $thumb
  * @property string $lat
  * @property string $lng
  * @property \DateTime $created
@@ -39,16 +40,22 @@ class Image extends BaseEntity {
 	protected $user;
 
 	/**
-	 * @ORM\Column(length=1000, name="image_path")
+	 * @ORM\Column(length=1000, name="path")
 	 * @var string
 	 */
-	protected $imagePath;
+	protected $path;
 
 	/**
-	 * @ORM\Column(length=200, name="image_name")
+	 * @ORM\Column(length=200, name="name")
 	 * @var string
 	 */
-	protected $imageName;
+	protected $name;
+
+	/**
+	 * @ORM\Column(length=200, name="thumb")
+	 * @var string
+	 */
+	protected $thumb;
 
 	/**
 	 * @ORM\Column(nullable=true, length=50, name="latitude")

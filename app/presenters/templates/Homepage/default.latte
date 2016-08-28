@@ -1,2 +1,96 @@
 {block content}
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
 
+    #map {
+        height: 100%;
+    }
+</style>
+
+<div style="display: none;" class="photo photogallery">
+    <ul class="topic">
+        <li class="active">
+            <ul>
+                <li n:foreach="$images as $image">
+                    <div id="img-{$image->id}" class="images" data-lat="{$image->lat}" data-lng="{$image->lng}">
+                        <a href="{$basePath}/uploads/{$image->path}/{$image->name}" data-toggle="lightbox" data-gallery="multiimages" data-title="{$image->name}">
+                            <img src="{$basePath}/uploads/{$image->path}/{$image->thumb}">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </li>
+
+
+    </ul>
+</div>
+
+<div id="map"></div>
+<script>
+
+    function initMap() {
+
+        var uluru = {
+            lat: 52,
+            lng: 19
+        };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: uluru
+        });
+
+        var createMarker = function (lat, lng, content) {
+
+            var infowindow = new google.maps.InfoWindow({
+                content: content
+            });
+
+            var marker = new google.maps.Marker({
+                map: map,
+                position: {
+                    lat: lat,
+                    lng: lng
+                }
+            });
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+            return marker;
+        };
+
+        var markers = [];
+
+        $.each($(".images"), function () {
+            markers.push(createMarker($(this).data("lat"), $(this).data("lng"), $(this).html()));
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhpStlfY7lkgLWa3J-uBR-j-RrQMsZjxA&callback=initMap"></script>
+<script>
+    $(document).ready(function () {
+        $(".show_without_map").on("click", function () {
+            $(this).parent().css("display", "none");
+            $(".show_with_map").parent().css("display", "block");
+            $(".photogallery").css("display", "block");
+            $("#map").css("display", "none");
+        });
+        $(".show_with_map").on("click", function () {
+            $(this).parent().css("display", "none");
+            $(".show_without_map").parent().css("display", "block");
+            $(".photogallery").css("display", "none");
+            $("#map").css("display", "block");
+
+
+        });
+    });
+
+    $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+
+</script>

@@ -28,15 +28,22 @@ application:
 session:
 	expiration: 14 days
 
+di:
+	accessors: true
+
 
 services:
 	- App\Forms\FormFactory
 	- App\Forms\SignFormFactory
-	- Nette\Security\Passwords
-	- App\Services\Security\Authenticator(@doctrine.dao(App\Entities\User))
 	- App\Forms\RegisterForm
 
+	- Nette\Security\Passwords
+	- App\Services\Security\Authenticator(@doctrine.dao(App\Entities\User))
+
 	- App\Services\FileExifData
+
+	# QUERIES
+	- App\Services\Queries\ImageQueries
 
 	router: App\RouterFactory::createRouter
 

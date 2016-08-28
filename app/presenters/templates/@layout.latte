@@ -13,6 +13,7 @@
     <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/alert/alertify.core.css">
     <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/alert/alertify.default.css" id="toggleCSS">
     <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/font-awesome.min.css">
+    <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/lightbox.css">
     <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/fontawesome-iconpicker.min.css">
     <title>{ifset title}{include title|striptags} | {/ifset}Exif obrázků do DB</title>
 
@@ -23,6 +24,7 @@
         <script src="{$basePath}/js/main.js"></script>
         <script src="{$basePath}/js/modernizr.js"></script>
         <script type="text/javascript" src="{$basePath}/alert/alertify.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/lightbox.js"></script>
         <script src="{$basePath}/js/fontawesome-iconpicker.min.js"></script>
     {/block}
     <link rel="stylesheet" href="{$basePath}/css/style.css">
@@ -48,21 +50,16 @@
 </div>
 <div class="topMenu">
     <ul>
-        {if $user->isLoggedIn()}
-            <li>Vítejte {$user->getIdentity()->name} ||
-                <a href="{plink logout!}">Odhlásit se</a>
-            </li>
-        {else}
-            <li><a href="{plink Sign:in}">Přihlásit se</a></li>
-            <li><a href="{plink Sign:register}">Registrovat se</a></li>
-        {/if}
+        {*<li><a href="{plink Homepage:default}">Nahrávání obrázků se zpracováním exif</a></li>*}
+        <li><a class="show_without_map">Zobrazit bez mapy</a> </li>
+        <li style="display: none;"><a href="#" class="show_with_map">Zobrazit s mapou</a> </li>
         <li><a href="{plink Image:upload}">Nahrát obrázek</a> </li>
     </ul>
 </div>
-<header>
-    <h1><a href="{plink Homepage:default}">Nahrávání obrázků se zpracováním exif</a></h1>
-</header>
 {include content}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </body>
 </html>

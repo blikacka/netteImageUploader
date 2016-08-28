@@ -2,10 +2,9 @@
 
 namespace App\Presenters;
 
-use App\Entities\Joke;
+use App\Entities\Image;
+use App\Services\Queries\ImageQueries;
 use Kdyby\Doctrine\EntityManager;
-use Nette;
-use App\Model;
 
 
 class HomepagePresenter extends BasePresenter {
@@ -13,9 +12,13 @@ class HomepagePresenter extends BasePresenter {
 	/** @var EntityManager @inject */
 	public $em;
 
+	/** @var ImageQueries @inject */
+	public $imageQueries;
+
 	public function renderDefault() {
 
-		$this->template->anyVariable = 'any value';
+		$this->template->images = $this->imageQueries->getImages();
+
 	}
 
 }

@@ -13,10 +13,9 @@ class ImageQueries {
 	/** @var EntityManager */
 	public $em;
 
-	public function __construct($em) {
+	public function __construct(EntityManager $em) {
 		$this->em = $em;
 	}
-
 
 	/**
 	 * @return QueryBuilder
