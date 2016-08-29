@@ -26,6 +26,8 @@ class ImageQueries {
 		              ->from(Image::class, 'i')
 		              ->leftJoin('i.user', 'u');
 
+		$q->orderBy('i.name', 'ASC');
+
 		return $q;
 
 	}

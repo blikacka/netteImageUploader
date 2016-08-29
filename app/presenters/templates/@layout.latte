@@ -50,6 +50,13 @@
 </div>
 <div class="topMenu">
     <ul>
+        {if $user->isLoggedIn()}
+            <li>Vítejte {$user->getIdentity()->name} ||
+                <a href="{plink logout!}">Odhlásit se</a>
+            </li>
+        {else}
+            <li><a href="{plink Sign:in}">Přihlásit se</a></li>
+        {/if}
         {*<li><a href="{plink Homepage:default}">Nahrávání obrázků se zpracováním exif</a></li>*}
         <li><a class="show_without_map">Zobrazit bez mapy</a> </li>
         <li style="display: none;"><a href="#" class="show_with_map">Zobrazit s mapou</a> </li>
